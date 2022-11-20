@@ -12,6 +12,10 @@
 // *************************************************************
 package main;
 
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+
 class FilterExporter {
 
    public String convertAuraIntoFilterString( Aura aura ) {
@@ -40,4 +44,22 @@ class FilterExporter {
                           );
    }
    
+   public Map<String, Object> convertAuraIntoTable( Aura aura ) {
+      Map<String, Object> table = new LinkedHashMap<>();
+      table.put("enabled", true);
+      table.put("anyUnit", aura.isShowAnyones());
+      table.put("point", aura.getAuraAnchor().toString());
+      table.put("id", aura.getSpellId());
+      table.put("yOffset", aura.getyOffset());
+      table.put("sizeOffset", 0);
+      table.put("style", "texturedIcon");
+      table.put("xOffset", aura.getxOffset());
+      Map<Object, Object> colorMap = new LinkedHashMap<>();
+      colorMap.put("r", 1);
+      colorMap.put("g", 0);
+      colorMap.put("b", 0);
+      table.put("color", colorMap);
+      table.put("onlyShowMissing", false);
+      return table;
+   }
 }

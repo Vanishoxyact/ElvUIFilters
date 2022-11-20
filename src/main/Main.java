@@ -13,7 +13,11 @@
 package main;
 
 import main.AuraManager.ClassSpecAura;
+import main.java.com.purplefrog.jluadata.LuaDumper;
+import main.java.com.purplefrog.jluadata.LuaUpdater;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -25,13 +29,13 @@ import java.util.Set;
 
 class Main {
    
-   public static void main(String[] args) {
+   public static void main(String[] args) throws IOException, ParseException {
       AuraManager auraManager = new AuraManager();
       AuraPopulator auraPopulator = new AuraPopulator(auraManager);
       auraPopulator.populateManager();
       FilterExporter filterExporter = new FilterExporter();
 
-      System.out.println("\t\t\t\t[\"GLOBAL\"] = {");
+      Map<Integer, Object> globalMap = new LinkedHashMap<>();
       for( SpecClass specClass : SpecClass.values() ) {
          for( AuraType auraType : AuraType.values() ) {
             List< ClassSpecAura > classAuras = auraManager.getAllAurasOfTypeForClass( auraType, specClass );
@@ -42,7 +46,7 @@ class Main {
             arrangedAuras.get( 0 ).get( 0 ).positionAuras( arrangedAuras );
             for( List< Aura > arrangedAuraList : arrangedAuras ) {
                for( Aura aura : arrangedAuraList ) {
-                  System.out.println(filterExporter.convertAuraIntoFilterString(aura));
+                  globalMap.put(aura.getSpellId(), filterExporter.convertAuraIntoTable(aura));
                }
             }
          }
@@ -51,10 +55,16 @@ class Main {
       externals.get(0).get(0).positionAuras(externals);
       for(List<Aura> externalList : externals) {
          for(Aura external : externalList) {
-            System.out.println(filterExporter.convertAuraIntoFilterString(external));
+            globalMap.put(external.getSpellId(), filterExporter.convertAuraIntoTable(external));
          }
       }
-      System.out.println("\t\t\t\t},");
+
+      LuaUpdater luaUpdater = new LuaUpdater();
+      Map<String, Object> dictionary = luaUpdater.readLuaIntoTable("C:\\Users\\Alex\\Documents\\GitHub\\ElvUIFilters\\src\\backup\\ElvUI.lua");
+      Map<Object, Object> globalAuras = (Map<Object, Object>) luaUpdater.exploreDictionary(dictionary, "ElvDB", "global", "unitframe", "aurawatch", "GLOBAL");
+      globalAuras.clear();
+      globalAuras.putAll(globalMap);
+      System.out.println(LuaDumper.dumpAsLuaDict(dictionary));
    }
    
    private static List<List<Aura>> arrangeAuras(List<ClassSpecAura> classSpecAuras) {

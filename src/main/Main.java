@@ -50,6 +50,13 @@ class Main {
       Map<String, Object> dictionary = luaUpdater.readLuaIntoTable(PATH);
       Map<Object, Object> globalAuras = (Map<Object, Object>) luaUpdater.exploreDictionary(dictionary, "ElvDB", "global", "unitframe", "aurawatch", "GLOBAL");
       globalAuras.putAll(globalMap);
+      Iterator<Entry<Object, Object>> globalAurasItr = globalAuras.entrySet().iterator();
+      while(globalAurasItr.hasNext()) {
+         Entry<Object, Object> aura = globalAurasItr.next();
+         if(!globalMap.containsKey((long)aura.getKey())) {
+            globalAurasItr.remove();
+         }
+      }
       String newStr = LuaDumper.dumpAsLuaDict(dictionary);
       Files.writeString(PATH, newStr, StandardOpenOption.WRITE);
       System.out.println(newStr);

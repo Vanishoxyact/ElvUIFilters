@@ -25,6 +25,7 @@ import java.nio.file.StandardOpenOption;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -35,82 +36,76 @@ import java.util.Set;
 class Main {
    
    private static final String FILE_PATH = "C:\\Users\\Alex\\Documents\\GitHub\\ElvUIFilters\\src\\backup\\ElvUI.lua";
+   private static final Path PATH = new File(FILE_PATH).toPath();;
    
    public static void main(String[] args) throws IOException, ParseException {
-      AuraManager auraManager = new AuraManager();
-      AuraPopulator auraPopulator = new AuraPopulator(auraManager);
-      auraPopulator.populateManager();
-      FilterExporter filterExporter = new FilterExporter();
+      updateGlobalFilters();
+   }
 
-      Map<Long, Object> globalMap = new LinkedHashMap<>();
-      for( SpecClass specClass : SpecClass.values() ) {
-         for( AuraType auraType : AuraType.values() ) {
-            List< ClassSpecAura > classAuras = auraManager.getAllAurasOfTypeForClass( auraType, specClass );
-            if(classAuras.isEmpty()) {
-               continue;
-            }
-            List< List< Aura > > arrangedAuras = arrangeAuras( classAuras );
-            arrangedAuras.get( 0 ).get( 0 ).positionAuras( arrangedAuras );
-            for( List< Aura > arrangedAuraList : arrangedAuras ) {
-               for( Aura aura : arrangedAuraList ) {
-                  globalMap.put((long)aura.getSpellId(), filterExporter.convertAuraIntoTable(aura));
-               }
-            }
-         }
-      }
-      List<List<Aura>> externals = auraPopulator.populateExternalsList();
-      externals.get(0).get(0).positionAuras(externals);
-      for(List<Aura> externalList : externals) {
-         for(Aura external : externalList) {
-            globalMap.put((long)external.getSpellId(), filterExporter.convertAuraIntoTable(external));
-         }
-      }
+   private static void updateGlobalFilters() throws IOException, ParseException {
+      FilterGenerator filterGenerator = new FilterGenerator();
+      Map<Long, Object> globalMap = filterGenerator.generateAuras();
 
-      Path path = new File(FILE_PATH).toPath();
       LuaUpdater luaUpdater = new LuaUpdater();
-      Map<String, Object> dictionary = luaUpdater.readLuaIntoTable(path);
+      Map<String, Object> dictionary = luaUpdater.readLuaIntoTable(PATH);
       Map<Object, Object> globalAuras = (Map<Object, Object>) luaUpdater.exploreDictionary(dictionary, "ElvDB", "global", "unitframe", "aurawatch", "GLOBAL");
       globalAuras.putAll(globalMap);
       String newStr = LuaDumper.dumpAsLuaDict(dictionary);
-      Files.writeString(path, newStr, StandardOpenOption.WRITE);
+      Files.writeString(PATH, newStr, StandardOpenOption.WRITE);
       System.out.println(newStr);
    }
    
-   private static List<List<Aura>> arrangeAuras(List<ClassSpecAura> classSpecAuras) {
-      Set<Aura> nonUniqueAuras = new LinkedHashSet<>();
-      Map<Spec, List<Aura>> uniqueAuras = new LinkedHashMap<>();
-      int maxSpecAuras = 0;
-      for( ClassSpecAura classSpecAura : classSpecAuras ) {
-         Aura aura = classSpecAura.getAura();
-         if( classSpecAura.getSpec() == null) {
-            nonUniqueAuras.add( aura );
-         } else {
-            long count = classSpecAuras.stream()
-                               .filter( csAura -> csAura.getAura() == aura )
-                               .count();
-            if(count > 1) {
-               nonUniqueAuras.add( aura );
-            } else {
-               List< Aura > specAuras = uniqueAuras.computeIfAbsent( classSpecAura.getSpec(), unused -> new ArrayList<>() );
-               specAuras.add( aura );
-               maxSpecAuras = Math.max( maxSpecAuras, specAuras.size() );
-            }
+   private static void removeGlobalFromClassFilters() throws IOException, ParseException {
+      FilterGenerator filterGenerator = new FilterGenerator();
+      Map<Long, Object> globalMap = filterGenerator.generateAuras();
+      
+      Path path = new File(FILE_PATH).toPath();
+      LuaUpdater luaUpdater = new LuaUpdater();
+      Map<String, Object> dictionary = luaUpdater.readLuaIntoTable(path);
+      removeGlobalFromClassFilters(dictionary, "PALADIN", globalMap);
+      removeGlobalFromClassFilters(dictionary, "PRIEST", globalMap);
+      removeGlobalFromClassFilters(dictionary, "DRUID", globalMap);
+      removeGlobalFromClassFilters(dictionary, "MONK", globalMap);
+      removeGlobalFromClassFilters(dictionary, "SHAMAN", globalMap);
+
+      String newStr = LuaDumper.dumpAsLuaDict(dictionary);
+      Files.writeString(PATH, newStr, StandardOpenOption.WRITE);
+      System.out.println(newStr);
+   }
+
+   private static void removeGlobalFromClassFilters(Map<String, Object> dictionary, String className, Map<Long, Object> globalMap) {
+      LuaUpdater luaUpdater = new LuaUpdater();
+      Map<Object, Object> classAuras = (Map<Object, Object>) luaUpdater.exploreDictionary(dictionary, "ElvDB", "global", "unitframe", "aurawatch", className);
+      Iterator<Entry<Object, Object>> auraIterator = classAuras.entrySet().iterator();
+      while(auraIterator.hasNext()) {
+         Entry<Object, Object> next = auraIterator.next();
+         if(globalMap.containsKey(next.getKey())) {
+            auraIterator.remove();
          }
       }
-      List<List<Aura>> aurasCategories = new ArrayList<>();
-      for( Aura nonUniqueAura : nonUniqueAuras ) {
-         aurasCategories.add( Arrays.asList(nonUniqueAura) );
-      }
-      for(int i = 0; i<maxSpecAuras; i++) {
-         List<Aura> specAuras = new ArrayList<>();
-         for( Entry< Spec, List< Aura > > specAurasEntry : uniqueAuras.entrySet() ) {
-            List< Aura > entryAuras = specAurasEntry.getValue();
-            if( entryAuras.size() > i ) {
-               specAuras.add( entryAuras.get( i ) );
-            }
-         }
-         aurasCategories.add( specAuras );
-      }
-      return aurasCategories;
+
+      classAuras.remove(79853L);
+      classAuras.remove(194844L);
+      classAuras.remove(125174L);
+      classAuras.remove(207319L);
+      classAuras.remove(210320L);
+      classAuras.remove(78826L);
+      classAuras.remove(90958L);
+      classAuras.remove(65860L);
+      classAuras.remove(120954L);
+      classAuras.remove(183416L);
+      classAuras.remove(33206L);
+      classAuras.remove(97463L);
+      classAuras.remove(199754L);
+      classAuras.remove(198589L);
+      classAuras.remove(66023L);
+      classAuras.remove(164444L);
+      classAuras.remove(209426L);
+      classAuras.remove(183415L);
+      classAuras.remove(114250L);
+      classAuras.remove(31379L);
+      classAuras.remove(115176L);
+      classAuras.remove(108416L);
+      classAuras.remove(266018L);
    }
 }

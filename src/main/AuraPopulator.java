@@ -131,7 +131,7 @@ class AuraPopulator {
 
       auraManager.addSpecAura( Spec.RET, new DefensiveBuff(184662) );//Shield of Vengeance
 
-      auraManager.addSpecAura( Spec.PROT_PALLY, new ClassBuff(86659) );//Guardian of Ancient Kings
+      auraManager.addSpecAura( Spec.PROT_PALLY, new DefensiveBuff(86659) );//Guardian of Ancient Kings
       auraManager.addSpecAura( Spec.PROT_PALLY, new ClassBuff(31850) );//Ardent Defender
       auraManager.addSpecAura( Spec.PROT_PALLY, new ClassBuff(327510) );//Shining Light
    }
@@ -190,4 +190,15 @@ class AuraPopulator {
       auraManager.addSpecAura( Spec.WINDWALKER, new ClassBuff(137639) );//Storm, Earth & Fire
       auraManager.addSpecAura( Spec.WINDWALKER, new ClassBuff(123904) );//Invoke Xuen
    }
+   
+   //karma
+   //coprse shield
+   //bonestorm
+   //fort brew?
+   //riposte?
+   //blur?
+   //icebound fort?
+   //freedom?
+   //Dispersion?
+   //zen meditation?
 }

@@ -55,9 +55,9 @@ class FilterExporter {
       table.put("style", "texturedIcon");
       table.put("xOffset", aura.getxOffset());
       Map<Object, Object> colorMap = new LinkedHashMap<>();
-      colorMap.put("r", 1);
-      colorMap.put("g", 0);
       colorMap.put("b", 0);
+      colorMap.put("g", 0);
+      colorMap.put("r", 1);
       table.put("color", colorMap);
       table.put("onlyShowMissing", false);
       return table;

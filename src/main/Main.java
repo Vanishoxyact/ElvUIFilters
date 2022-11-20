@@ -16,7 +16,12 @@ import main.AuraManager.ClassSpecAura;
 import main.java.com.purplefrog.jluadata.LuaDumper;
 import main.java.com.purplefrog.jluadata.LuaUpdater;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,13 +34,15 @@ import java.util.Set;
 
 class Main {
    
+   private static final String FILE_PATH = "C:\\Users\\Alex\\Documents\\GitHub\\ElvUIFilters\\src\\backup\\ElvUI.lua";
+   
    public static void main(String[] args) throws IOException, ParseException {
       AuraManager auraManager = new AuraManager();
       AuraPopulator auraPopulator = new AuraPopulator(auraManager);
       auraPopulator.populateManager();
       FilterExporter filterExporter = new FilterExporter();
 
-      Map<Integer, Object> globalMap = new LinkedHashMap<>();
+      Map<Long, Object> globalMap = new LinkedHashMap<>();
       for( SpecClass specClass : SpecClass.values() ) {
          for( AuraType auraType : AuraType.values() ) {
             List< ClassSpecAura > classAuras = auraManager.getAllAurasOfTypeForClass( auraType, specClass );
@@ -46,7 +53,7 @@ class Main {
             arrangedAuras.get( 0 ).get( 0 ).positionAuras( arrangedAuras );
             for( List< Aura > arrangedAuraList : arrangedAuras ) {
                for( Aura aura : arrangedAuraList ) {
-                  globalMap.put(aura.getSpellId(), filterExporter.convertAuraIntoTable(aura));
+                  globalMap.put((long)aura.getSpellId(), filterExporter.convertAuraIntoTable(aura));
                }
             }
          }
@@ -55,16 +62,18 @@ class Main {
       externals.get(0).get(0).positionAuras(externals);
       for(List<Aura> externalList : externals) {
          for(Aura external : externalList) {
-            globalMap.put(external.getSpellId(), filterExporter.convertAuraIntoTable(external));
+            globalMap.put((long)external.getSpellId(), filterExporter.convertAuraIntoTable(external));
          }
       }
 
+      Path path = new File(FILE_PATH).toPath();
       LuaUpdater luaUpdater = new LuaUpdater();
-      Map<String, Object> dictionary = luaUpdater.readLuaIntoTable("C:\\Users\\Alex\\Documents\\GitHub\\ElvUIFilters\\src\\backup\\ElvUI.lua");
+      Map<String, Object> dictionary = luaUpdater.readLuaIntoTable(path);
       Map<Object, Object> globalAuras = (Map<Object, Object>) luaUpdater.exploreDictionary(dictionary, "ElvDB", "global", "unitframe", "aurawatch", "GLOBAL");
-      globalAuras.clear();
       globalAuras.putAll(globalMap);
-      System.out.println(LuaDumper.dumpAsLuaDict(dictionary));
+      String newStr = LuaDumper.dumpAsLuaDict(dictionary);
+      Files.writeString(path, newStr, StandardOpenOption.WRITE);
+      System.out.println(newStr);
    }
    
    private static List<List<Aura>> arrangeAuras(List<ClassSpecAura> classSpecAuras) {

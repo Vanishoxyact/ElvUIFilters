@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
@@ -24,8 +25,8 @@ import java.util.stream.Collectors;
 
 public class LuaUpdater {
    
-   public Map<String,Object> readLuaIntoTable(String filePath) throws IOException, ParseException {
-      String s = Files.readString(new File(filePath).toPath());
+   public Map<String,Object> readLuaIntoTable(Path path) throws IOException, ParseException {
+      String s = Files.readString(path);
       return new LuaParser(new StringReader(s)).parseDictionary();
    }
 

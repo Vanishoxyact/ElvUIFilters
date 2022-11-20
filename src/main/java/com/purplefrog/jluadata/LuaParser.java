@@ -381,7 +381,7 @@ public class LuaParser
             }
         }
 
-        return Integer.parseInt(buffer.toString());
+        return Long.parseLong(buffer.toString());
     }
 
     public Double parseRemainingDouble(StringBuilder buffer)

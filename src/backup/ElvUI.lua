@@ -4128,9 +4128,9 @@ ElvDB = {
 					["b"] = 0.05882352941176471,
 				},
 				["valuecolor"] = {
-					["r"] = 0,
-					["g"] = 0.4392157196998596,
-					["b"] = 0.8666667342185974,
+					["r"] = 0.2000000178813934,
+					["g"] = 0.5764706134796143,
+					["b"] = 0.4980392456054688,
 				},
 				["loginmessage"] = false,
 				["threat"] = {
@@ -6527,22 +6527,17 @@ ElvDB = {
 				},
 				["My Globals"] = {
 					["spells"] = {
+						[51052] = {
+							["enable"] = true,
+							["priority"] = 0,
+							["stackThreshold"] = 0,
+						},
+						[209426] = {
+							["enable"] = true,
+							["priority"] = 0,
+							["stackThreshold"] = 0,
+						},
 						[1044] = {
-							["enable"] = true,
-							["priority"] = 0,
-							["stackThreshold"] = 0,
-						},
-						[48707] = {
-							["enable"] = true,
-							["priority"] = 0,
-							["stackThreshold"] = 0,
-						},
-						[196718] = {
-							["enable"] = true,
-							["priority"] = 0,
-							["stackThreshold"] = 0,
-						},
-						[97462] = {
 							["enable"] = true,
 							["priority"] = 0,
 							["stackThreshold"] = 0,
@@ -6552,7 +6547,7 @@ ElvDB = {
 							["priority"] = 0,
 							["stackThreshold"] = 0,
 						},
-						[116841] = {
+						[97462] = {
 							["enable"] = true,
 							["priority"] = 0,
 							["stackThreshold"] = 0,
@@ -6563,6 +6558,16 @@ ElvDB = {
 							["stackThreshold"] = 0,
 						},
 						[204018] = {
+							["enable"] = true,
+							["priority"] = 0,
+							["stackThreshold"] = 0,
+						},
+						[145629] = {
+							["enable"] = true,
+							["priority"] = 0,
+							["stackThreshold"] = 0,
+						},
+						[116841] = {
 							["enable"] = true,
 							["priority"] = 0,
 							["stackThreshold"] = 0,
@@ -8279,6 +8284,156 @@ ElvDB = {
 						["onlyShowMissing"] = false,
 					},
 				},
+				["EVOKER"] = {
+					[363534] = {
+						["enabled"] = true,
+						["anyUnit"] = false,
+						["point"] = "TOP",
+						["id"] = 363534,
+						["displayText"] = false,
+						["textThreshold"] = -1,
+						["yOffset"] = 0,
+						["countAnchor"] = "BOTTOMRIGHT",
+						["sizeOffset"] = 0,
+						["style"] = "texturedIcon",
+						["countY"] = 1,
+						["countX"] = 1,
+						["color"] = {
+							["r"] = 1,
+							["g"] = 1,
+							["b"] = 1,
+						},
+						["xOffset"] = 25,
+						["onlyShowMissing"] = false,
+					},
+					[355941] = {
+						["enabled"] = true,
+						["anyUnit"] = false,
+						["point"] = "TOPRIGHT",
+						["id"] = 355941,
+						["displayText"] = false,
+						["textThreshold"] = -1,
+						["yOffset"] = 0,
+						["countAnchor"] = "BOTTOMRIGHT",
+						["sizeOffset"] = 0,
+						["style"] = "texturedIcon",
+						["countY"] = 1,
+						["countX"] = 1,
+						["color"] = {
+							["r"] = 1,
+							["g"] = 1,
+							["b"] = 1,
+						},
+						["xOffset"] = -25,
+						["onlyShowMissing"] = false,
+					},
+					[364343] = {
+						["enabled"] = true,
+						["anyUnit"] = false,
+						["point"] = "TOPRIGHT",
+						["id"] = 364343,
+						["displayText"] = false,
+						["textThreshold"] = -1,
+						["yOffset"] = 0,
+						["countAnchor"] = "BOTTOMRIGHT",
+						["sizeOffset"] = 0,
+						["style"] = "texturedIcon",
+						["countY"] = 1,
+						["countX"] = 1,
+						["color"] = {
+							["r"] = 1,
+							["g"] = 1,
+							["b"] = 1,
+						},
+						["xOffset"] = 0,
+						["onlyShowMissing"] = false,
+					},
+					[357170] = {
+						["enabled"] = true,
+						["anyUnit"] = false,
+						["point"] = "TOP",
+						["id"] = 357170,
+						["displayText"] = false,
+						["textThreshold"] = -1,
+						["yOffset"] = 0,
+						["countAnchor"] = "BOTTOMRIGHT",
+						["sizeOffset"] = 0,
+						["style"] = "texturedIcon",
+						["countY"] = 1,
+						["countX"] = 1,
+						["color"] = {
+							["r"] = 1,
+							["g"] = 1,
+							["b"] = 1,
+						},
+						["xOffset"] = 0,
+						["onlyShowMissing"] = false,
+					},
+					[367364] = {
+						["enabled"] = true,
+						["anyUnit"] = false,
+						["point"] = "TOPLEFT",
+						["id"] = 367364,
+						["displayText"] = false,
+						["textThreshold"] = -1,
+						["yOffset"] = 0,
+						["countAnchor"] = "BOTTOMRIGHT",
+						["sizeOffset"] = 0,
+						["style"] = "texturedIcon",
+						["countY"] = 1,
+						["countX"] = 1,
+						["color"] = {
+							["r"] = 1,
+							["g"] = 1,
+							["b"] = 1,
+						},
+						["xOffset"] = 25,
+						["onlyShowMissing"] = false,
+					},
+					[366155] = {
+						["enabled"] = true,
+						["anyUnit"] = false,
+						["point"] = "TOPLEFT",
+						["id"] = 366155,
+						["displayText"] = false,
+						["textThreshold"] = -1,
+						["yOffset"] = 0,
+						["countAnchor"] = "BOTTOMRIGHT",
+						["sizeOffset"] = 0,
+						["style"] = "texturedIcon",
+						["countY"] = 1,
+						["countX"] = 1,
+						["color"] = {
+							["r"] = 1,
+							["g"] = 1,
+							["b"] = 1,
+						},
+						["xOffset"] = 0,
+						["onlyShowMissing"] = false,
+					},
+					[373267] = {
+						["enabled"] = true,
+						["anyUnit"] = false,
+						["point"] = "TOP",
+						["id"] = 373267,
+						["displayText"] = false,
+						["textThreshold"] = -1,
+						["yOffset"] = 0,
+						["countAnchor"] = "BOTTOMRIGHT",
+						["sizeOffset"] = 0,
+						["style"] = "texturedIcon",
+						["countY"] = 1,
+						["countX"] = 1,
+						["color"] = {
+							["a"] = 1,
+							["r"] = 1,
+							["g"] = 1,
+							["b"] = 1,
+						},
+						["xOffset"] = -25,
+						["onlyShowMissing"] = false,
+					},
+				},
 				["DRUID"] = {
 					[102342] = {
 						["enabled"] = true,
@@ -8446,7 +8601,7 @@ ElvDB = {
 					},
 					[191840] = {
 						["point"] = "TOPLEFT",
-						["xOffset"] = 52,
+						["xOffset"] = 50,
 						["style"] = "texturedIcon",
 					},
 					[116849] = {
@@ -8466,7 +8621,7 @@ ElvDB = {
 						["enabled"] = true,
 						["anyUnit"] = false,
 						["point"] = "TOPLEFT",
-						["xOffset"] = 26,
+						["xOffset"] = 25,
 						["yOffset"] = 0,
 						["sizeOffset"] = 0,
 						["style"] = "texturedIcon",
@@ -8480,7 +8635,7 @@ ElvDB = {
 					},
 					[124682] = {
 						["point"] = "TOPRIGHT",
-						["xOffset"] = -26,
+						["xOffset"] = -25,
 						["style"] = "texturedIcon",
 					},
 				},
@@ -8603,24 +8758,12 @@ ElvDB = {
 			["settings"] = {
 				["Currencies"] = {
 					["tooltipData"] = {
-						[13] = {
+						{
 							nil, -- [1]
 							nil, -- [2]
 							nil, -- [3]
 							true, -- [4]
-						},
-						[18] = {
-							nil, -- [1]
-							nil, -- [2]
-							nil, -- [3]
-							true, -- [4]
-						},
-						[22] = {
-							nil, -- [1]
-							nil, -- [2]
-							nil, -- [3]
-							true, -- [4]
-						},
+						}, -- [1]
 						[27] = {
 							nil, -- [1]
 							nil, -- [2]
@@ -8634,6 +8777,36 @@ ElvDB = {
 							true, -- [4]
 						},
 						[38] = {
+							nil, -- [1]
+							nil, -- [2]
+							nil, -- [3]
+							true, -- [4]
+						},
+						[18] = {
+							nil, -- [1]
+							nil, -- [2]
+							nil, -- [3]
+							true, -- [4]
+						},
+						[12] = {
+							nil, -- [1]
+							nil, -- [2]
+							nil, -- [3]
+							true, -- [4]
+						},
+						[14] = {
+							nil, -- [1]
+							nil, -- [2]
+							nil, -- [3]
+							true, -- [4]
+						},
+						[9] = {
+							nil, -- [1]
+							nil, -- [2]
+							nil, -- [3]
+							true, -- [4]
+						},
+						[25] = {
 							nil, -- [1]
 							nil, -- [2]
 							nil, -- [3]
@@ -8667,7 +8840,7 @@ ElvDB = {
 			["Pandavanish"] = 95123731,
 			["Raingvanish"] = 13872,
 			["Sneakyvanish"] = 5044877957,
-			["Felvanish"] = 23003112,
+			["Felvanish"] = 25337667,
 		},
 	},
 	["LuaErrorDisabledAddOns"] = {
@@ -9030,40 +9203,40 @@ ElvPrivateDB = {
 					["playerChoice"] = false,
 					["encounterjournal"] = false,
 					["achievement"] = false,
-					["nonraid"] = false,
+					["islandsPartyPose"] = false,
 					["archaeology"] = false,
 					["adventureMap"] = false,
 					["mail"] = false,
-					["bgscore"] = false,
+					["contribution"] = false,
 					["stable"] = false,
 					["questChoice"] = false,
-					["trainer"] = false,
+					["collections"] = false,
 					["tabard"] = false,
-					["islandQueue"] = false,
+					["torghastLevelPicker"] = false,
 					["itemUpgrade"] = false,
 					["talkinghead"] = false,
 					["azerite"] = false,
-					["garrison"] = false,
+					["calendar"] = false,
 					["voidstorage"] = false,
 					["gmChat"] = false,
 					["azeriteRespec"] = false,
-					["lfguild"] = false,
-					["islandsPartyPose"] = false,
+					["subscriptionInterstitial"] = false,
+					["nonraid"] = false,
 					["chromieTime"] = false,
-					["calendar"] = false,
+					["garrison"] = false,
 					["taxi"] = false,
 					["losscontrol"] = false,
-					["subscriptionInterstitial"] = false,
+					["lfguild"] = false,
 					["spellbook"] = false,
 					["runeforge"] = false,
 					["objectiveTracker"] = false,
 					["barber"] = false,
-					["collections"] = false,
+					["gbank"] = false,
 					["covenantSanctum"] = false,
 					["guildregistrar"] = false,
 					["communities"] = false,
 					["azeriteEssence"] = false,
-					["talent"] = false,
+					["orderhall"] = false,
 					["animaDiversion"] = false,
 					["channels"] = false,
 					["guild"] = false,
@@ -9086,13 +9259,13 @@ ElvPrivateDB = {
 					["alertframes"] = false,
 					["macro"] = false,
 					["friends"] = false,
-					["torghastLevelPicker"] = false,
+					["talent"] = false,
+					["trainer"] = false,
+					["islandQueue"] = false,
 					["itemInteraction"] = false,
 					["bgmap"] = false,
-					["contribution"] = false,
-					["orderhall"] = false,
 					["transmogrify"] = false,
-					["gbank"] = false,
+					["bgscore"] = false,
 				},
 			},
 			["install_complete"] = "10.82",

@@ -19,6 +19,11 @@ class ClassBuff extends Aura {
    public ClassBuff( int spellId ) {
       super( spellId, Anchor.RIGHT, AuraType.CLASS );
    }
+
+   public ClassBuff( int spellId, int index ) {
+      this( spellId);
+      setIndex(index);
+   }
    
    @Override
    public void positionAuras( List< List<Aura> > auras ) {
@@ -26,7 +31,11 @@ class ClassBuff extends Aura {
          List<Aura> aurasForIndex = auras.get( i );
          for( Aura aura : aurasForIndex ) {
             aura.setyOffset( 0 );
-            aura.setxOffset( i * -Aura.OFFSET );
+            int index = aura.getIndex().orElse(i);
+            if(index > 2) {
+               throw new IllegalStateException("Too many auras in block!");
+            }
+            aura.setxOffset( index * -Aura.OFFSET );
          }
       }
    }

@@ -40,9 +40,6 @@ class FilterGenerator {
             }
             List<List< Aura >> arrangedAuras = arrangeAuras(classAuras );
             arrangedAuras.get( 0 ).get( 0 ).positionAuras( arrangedAuras );
-            if(arrangedAuras.size() > 3) {
-               throw new IllegalStateException("Too many auras in block!");
-            }
             for( List< Aura > arrangedAuraList : arrangedAuras ) {
                for( Aura aura : arrangedAuraList ) {
                   globalMap.put((long)aura.getSpellId(), filterExporter.convertAuraIntoTable(aura));

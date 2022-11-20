@@ -20,14 +20,22 @@ class DefensiveBuff extends Aura {
       super( spellId, Anchor.CENTER, AuraType.DEFENSIVE );
    }
 
+   public DefensiveBuff( int spellId, int index ) {
+      this( spellId);
+      setIndex(index);
+   }
    @Override
    public void positionAuras( List< List< Aura > > auras ) {
       for( int i = 0; i < auras.size(); i++ ) {
          List< Aura > aurasForIndex = auras.get( i );
          for( Aura aura : aurasForIndex ) {
             aura.setyOffset( 0 );
-            int multiplier = ( int ) Math.ceil( i / 2d );
-            int mod = i % 2;
+            int index = aura.getIndex().orElse(i);
+            if(index > 2) {
+               throw new IllegalStateException("Too many auras in block!");
+            }
+            int multiplier = ( int ) Math.ceil( index / 2d );
+            int mod = index % 2;
             if( mod == 0 ) {
                aura.setxOffset( multiplier * Aura.OFFSET );
             } else {

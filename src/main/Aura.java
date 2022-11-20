@@ -13,6 +13,7 @@
 package main;
 
 import java.util.List;
+import java.util.OptionalInt;
 
 abstract class Aura {
    
@@ -24,6 +25,7 @@ abstract class Aura {
    private boolean showAnyones = true;
    private int xOffset;
    private int yOffset;
+   private Integer index;
 
    public Aura( int spellId, Anchor auraAnchor, AuraType auraType ) {
       this.spellId = spellId;
@@ -61,6 +63,18 @@ abstract class Aura {
 
    public int getyOffset() {
       return yOffset;
+   }
+
+   public OptionalInt getIndex() {
+      if(index == null) {
+         return OptionalInt.empty();
+      } else {
+         return OptionalInt.of(index);
+      }
+   }
+
+   public void setIndex(int index) {
+      this.index = index;
    }
 
    public abstract void positionAuras( List<List<Aura>> auras );

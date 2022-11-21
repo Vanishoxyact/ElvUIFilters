@@ -58,55 +58,73 @@ class AuraPopulator {
    private void populateDkAuras() {
       auraManager.addClassAura( SpecClass.DEATH_KNIGHT, new DefensiveBuff(48792) );//Icebound Fortitude
       auraManager.addClassAura( SpecClass.DEATH_KNIGHT, new DefensiveBuff(48707) );//Anti-Magic Shell
-      auraManager.addClassAura( SpecClass.DEATH_KNIGHT, new DefensiveBuff(50397) );//Lichborne
 
-      auraManager.addSpecAura( Spec.FROST_DK, new ClassBuff(51271) );//Pillar of Frost
       auraManager.addSpecAura( Spec.FROST_DK, new ClassBuff(47568) );//Empower Rune Weapon
+      auraManager.addSpecAura( Spec.FROST_DK, new ClassBuff(51271) );//Pillar of Frost
       auraManager.addSpecAura( Spec.FROST_DK, new ClassBuff(152279) );//Breath of Sindragosa
 
-      auraManager.addSpecAura( Spec.BLOOD, new ClassBuff(55233) );//Vampiric Blood
+      auraManager.addSpecAura( Spec.UNHOLY, new ClassBuff(47568) );//Empower Rune Weapon
+      auraManager.addSpecAura( Spec.UNHOLY, new ClassBuff(207289) );//Unholy Assault
+
+      //Bone shield? (195181)
+      auraManager.addSpecAura( Spec.BLOOD, new DefensiveBuff(55233) );//Vampiric Blood
       auraManager.addSpecAura( Spec.BLOOD, new ClassBuff(194679) );//Runetap
-      auraManager.addSpecAura( Spec.BLOOD, new ClassBuff(49028) );//Dancing Rune Weapon
+      auraManager.addSpecAura( Spec.BLOOD, new ClassBuff(81256) );//Dancing Rune Weapon
+      auraManager.addSpecAura( Spec.BLOOD, new ClassBuff(194844) );//Bonestorm
+
+      //Globals
+      //145629 - AMZ
    }
    
    private void populateHunterAuras() {
+      //TODO need to check
       auraManager.addClassAura( SpecClass.HUNTER, new DefensiveBuff(186265) );//Turtle
       auraManager.addClassAura( SpecClass.HUNTER, new DefensiveBuff(264735) );//Survival of the Fittest
-      auraManager.addClassAura( SpecClass.HUNTER, new DefensiveBuff(281195) );//Survival of the Fittest
       
       auraManager.addSpecAura( Spec.BEAST_MASTERY, new ClassBuff(193530) );//Aspect of the Wild
+      auraManager.addSpecAura( Spec.BEAST_MASTERY, new ClassBuff(359844) );//Call of the Wild
       
       auraManager.addSpecAura( Spec.MARKSMANSHIP, new ClassBuff(288613) );//Trueshot
       
-      auraManager.addSpecAura( Spec.SURVIVAL, new ClassBuff(266779) );//Coordinated Assult
+      auraManager.addSpecAura( Spec.SURVIVAL, new ClassBuff(266779) );//Coordinated Assault
+      auraManager.addSpecAura( Spec.SURVIVAL, new ClassBuff(360966) );//Spearhead
    }
    
    private void populateDhAuras() {
-      auraManager.addSpecAura( Spec.HAVOC, new ClassBuff(162264) );//Meta
       auraManager.addSpecAura( Spec.HAVOC, new DefensiveBuff(212800) );//Blur
+      auraManager.addSpecAura( Spec.HAVOC, new DefensiveBuff(196555) );//Netherwalk
+      auraManager.addSpecAura( Spec.HAVOC, new ClassBuff(162264) );//Meta
 
       auraManager.addSpecAura( Spec.VENGEANCE, new DefensiveBuff(187827) );//Meta
-      auraManager.addSpecAura( Spec.VENGEANCE, new DefensiveBuff(203720) );//Demon Spikes
+      auraManager.addSpecAura( Spec.VENGEANCE, new DefensiveBuff(203819) );//Demon Spikes
+      auraManager.addSpecAura( Spec.VENGEANCE, new ClassBuff(263648) );//Soul Barrier
+      auraManager.addSpecAura( Spec.VENGEANCE, new ClassBuff(203981) );//Soul Fragments
+      
+      //Globals
+      //209426 - Darkness
    }
 
    private void populateMageAuras() {
       auraManager.addClassAura( SpecClass.MAGE, new DefensiveBuff(45438) );//Ice block
+      auraManager.addClassAura( SpecClass.MAGE, new DefensiveBuff(113862) );//Greater Invis
       
       auraManager.addSpecAura( Spec.FIRE, new DefensiveBuff(86949) );//Cauterize
       auraManager.addSpecAura( Spec.FIRE, new ClassBuff(190319) );//Combustion
       
       auraManager.addSpecAura( Spec.FROST_MAGE, new ClassBuff(12472) );//Icy Veins
       
-      auraManager.addSpecAura( Spec.ARCANE, new ClassBuff(12042) );//Arcane Power
+      auraManager.addSpecAura( Spec.ARCANE, new ClassBuff(365362) );//Arcane Surge
    }
 
    private void populateShamanAuras() {
       auraManager.addClassAura( SpecClass.SHAMAN, new DefensiveBuff(108271) );//Astral Shift
+      auraManager.addClassAura( SpecClass.SHAMAN, new DefensiveBuff(381755) );//Earth Ele
 
       auraManager.addSpecAura( Spec.ELEMENTAL, new ClassBuff(114050) );//Ascendance
       auraManager.addSpecAura( Spec.ELEMENTAL, new ClassBuff(263806) );//Storm Elemental (Wind Gust)
 
       auraManager.addSpecAura( Spec.ENHANCEMENT, new ClassBuff(114051) );//Ascendance
+      auraManager.addSpecAura( Spec.ENHANCEMENT, new ClassBuff(333957) );//Feral Spirit
    }
    
    private void populateDruidAuras() {
@@ -114,15 +132,16 @@ class AuraPopulator {
       auraManager.addClassAura( SpecClass.DRUID, new DefensiveBuff(22842) );//Frenzied Regeneration
 
       auraManager.addSpecAura( Spec.FERAL, new DefensiveBuff(61336) );//Survival Instincts
-      auraManager.addSpecAura( Spec.FERAL, new ClassBuff(106951) );//Berserk
+      auraManager.addSpecAura( Spec.FERAL, new ClassBuff(106951, 0) );//Berserk
+      auraManager.addSpecAura( Spec.FERAL, new ClassBuff(102543, 0) );//Incarn
 
+      auraManager.addSpecAura( Spec.GUARDIAN, new DefensiveBuff(61336) );//Survival Instincts
       auraManager.addSpecAura( Spec.GUARDIAN, new ClassBuff(192081) );//Ironfur
-      auraManager.addSpecAura( Spec.GUARDIAN, new ClassBuff(50334) );//Berserk
-      auraManager.addSpecAura( Spec.GUARDIAN, new ClassBuff(61336) );//Survival Instincts
+      auraManager.addSpecAura( Spec.GUARDIAN, new ClassBuff(50334, 1) );//Berserk
+      auraManager.addSpecAura( Spec.GUARDIAN, new ClassBuff(102558, 1) );//Incarn
+      auraManager.addSpecAura( Spec.GUARDIAN, new ClassBuff(200851, 2) );//Rage of the Sleeper
 
       auraManager.addSpecAura( Spec.BALANCE, new ClassBuff(194223) );//Celestial Alignment
-      auraManager.addSpecAura( Spec.BALANCE, new ClassBuff(323546) );//Ravenous Frenzy
-      auraManager.addSpecAura( Spec.BALANCE, new ClassBuff(319454) );//Heart of the Wild
    }
    
    private void populatePaladinAuras() {
@@ -192,13 +211,12 @@ class AuraPopulator {
    }
    
    //karma
-   //coprse shield
-   //bonestorm
    //fort brew?
    //riposte?
    //blur?
-   //icebound fort?
    //freedom?
    //Dispersion?
    //zen meditation?
+   
+   //global stoneskin?
 }

@@ -25,5 +25,6 @@ public enum SpecClass {
    PRIEST,
    ROGUE,
    WARLOCK,
-   MONK
+   MONK,
+   EVOKER
 }

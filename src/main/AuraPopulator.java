@@ -36,8 +36,9 @@ class AuraPopulator {
       populateRogueAuras();
       populateWarlockAuras();
       populateMonkAuras();
+      populateEvokerAuras();
    }
-   
+
    public List< List<Aura> > populateExternalsList(){
       return Arrays.asList(
             Arrays.asList(
@@ -125,6 +126,9 @@ class AuraPopulator {
 
       auraManager.addSpecAura( Spec.ENHANCEMENT, new ClassBuff(114051) );//Ascendance
       auraManager.addSpecAura( Spec.ENHANCEMENT, new ClassBuff(333957) );//Feral Spirit
+      
+      //Global
+      //Stoneskin?
    }
    
    private void populateDruidAuras() {
@@ -147,32 +151,50 @@ class AuraPopulator {
    private void populatePaladinAuras() {
       auraManager.addClassAura( SpecClass.PALADIN, new DefensiveBuff(642) );//Divine Shield
       auraManager.addClassAura( SpecClass.PALADIN, new ClassBuff(31884) );//Avenging Wrath
+      auraManager.addClassAura( SpecClass.PALADIN, new ClassBuff(152262) );//Seraphim
 
-      auraManager.addSpecAura( Spec.RET, new DefensiveBuff(184662) );//Shield of Vengeance
+      auraManager.addSpecAura( Spec.RET, new DefensiveBuff(184662, 1) );//Shield of Vengeance
+      auraManager.addSpecAura( Spec.RET, new DefensiveBuff(498, 1) );//Divine Protection
+      auraManager.addSpecAura( Spec.RET, new ClassBuff(231895, 0) );//Crusade
 
       auraManager.addSpecAura( Spec.PROT_PALLY, new DefensiveBuff(86659) );//Guardian of Ancient Kings
+      auraManager.addSpecAura( Spec.PROT_PALLY, new DefensiveBuff(327193) );//Moment of Glory
       auraManager.addSpecAura( Spec.PROT_PALLY, new ClassBuff(31850) );//Ardent Defender
-      auraManager.addSpecAura( Spec.PROT_PALLY, new ClassBuff(327510) );//Shining Light
+      auraManager.addSpecAura( Spec.PROT_PALLY, new ClassBuff(389539, 0) );//Sentinel
+      
+      //Globals
+      //Bop 1022
+      //Sac 6940
+      //Spellwarding 204018
+      //Freedom 1044
    }
    
    private void populateWarriorAuras() {
       auraManager.addClassAura( SpecClass.WARRIOR, new DefensiveBuff(23920) );//Spell Reflection
+      auraManager.addClassAura( SpecClass.WARRIOR, new ClassBuff(107574) );//Avatar
 
-      auraManager.addSpecAura( Spec.PROT_WARR, new DefensiveBuff(871) );//Shield Wall
       auraManager.addSpecAura( Spec.PROT_WARR, new DefensiveBuff(12975) );//Last Stand
-      auraManager.addSpecAura( Spec.PROT_WARR, new ClassBuff(2565) );//Shield Block
-      auraManager.addSpecAura( Spec.PROT_WARR, new ClassBuff(107574) );//Avatar
+      auraManager.addSpecAura( Spec.PROT_WARR, new DefensiveBuff(392966) );//Spell Block
+      auraManager.addSpecAura( Spec.PROT_WARR, new ClassBuff(871) );//Shield Wall
+      auraManager.addSpecAura( Spec.PROT_WARR, new ClassBuff(132404) );//Shield Block
 
       auraManager.addSpecAura( Spec.ARMS, new DefensiveBuff(118038) );//Die by the Sword
-      auraManager.addSpecAura( Spec.ARMS, new ClassBuff(107574) );//Avatar
+      auraManager.addSpecAura( Spec.ARMS, new ClassBuff(227847) );//Bladestorm
 
       auraManager.addSpecAura( Spec.FURY, new DefensiveBuff(184364) );//Enraged Regeneration
       auraManager.addSpecAura( Spec.FURY, new ClassBuff(1719) );//Recklessness
+      
+      //Globals
+      //Rally 97463
    }
 
    private void populatePriestAuras() {
       auraManager.addSpecAura( Spec.SHADOW, new DefensiveBuff(47585) );//Dispersion
-      auraManager.addSpecAura( Spec.SHADOW, new ClassBuff(194249) );//Voidform
+      auraManager.addSpecAura( Spec.SHADOW, new ClassBuff(391109, 0) );//Dark Ascension
+      auraManager.addSpecAura( Spec.SHADOW, new ClassBuff(194249, 0) );//Voidform
+      
+      //Global
+      //Power Infusion 10060
    }
 
    private void populateRogueAuras() {
@@ -187,36 +209,43 @@ class AuraPopulator {
 
    private void populateWarlockAuras() {
       auraManager.addClassAura( SpecClass.WARLOCK, new DefensiveBuff(104773) );//Unending Resolve
-
-      auraManager.addSpecAura( Spec.AFFLICTION, new ClassBuff(113860) );//Dark Soul: Misery
       
-      auraManager.addSpecAura( Spec.DESTRUCTION, new ClassBuff(113858) );//Dark Soul: Instability
+      //Track affl darkglare?
+      
+      //Track destro infernal?
       
       auraManager.addSpecAura( Spec.DEMONOLOGY, new ClassBuff(265273) );//Demonic Power
+      auraManager.addSpecAura( Spec.DEMONOLOGY, new ClassBuff(267218) );//Nether Portal
+      //Track GfG?
    }
 
    private void populateMonkAuras() {
-      auraManager.addSpecAura( Spec.BREWMASTER, new DefensiveBuff(122278) );//Dampen Harm
-      auraManager.addSpecAura( Spec.BREWMASTER, new DefensiveBuff(115203) );//Fortifying Brew
-      auraManager.addSpecAura( Spec.BREWMASTER, new ClassBuff(124274) );//Moderate Stagger
-      auraManager.addSpecAura( Spec.BREWMASTER, new ClassBuff(124273) );//Heavy Stagger
-      auraManager.addSpecAura( Spec.BREWMASTER, new ClassBuff(310454) );//Weapons of Order
+      auraManager.addClassAura( SpecClass.MONK, new DefensiveBuff(122278) );//Dampen Harm
+      auraManager.addClassAura( SpecClass.MONK, new DefensiveBuff(120954) );//Fortifying Brew
+      auraManager.addClassAura( SpecClass.MONK, new DefensiveBuff(122783) );//Diffuse Magic
 
-      auraManager.addSpecAura( Spec.WINDWALKER, new DefensiveBuff(122470) );//Dampen Harm
-      auraManager.addSpecAura( Spec.WINDWALKER, new DefensiveBuff(243435) );//Fortifying Brew
-      auraManager.addSpecAura( Spec.WINDWALKER, new DefensiveBuff(122783) );//Diffuse Magic
-      auraManager.addSpecAura( Spec.WINDWALKER, new ClassBuff(310454) );//Weapons of Order
-      auraManager.addSpecAura( Spec.WINDWALKER, new ClassBuff(137639) );//Storm, Earth & Fire
-      auraManager.addSpecAura( Spec.WINDWALKER, new ClassBuff(123904) );//Invoke Xuen
+      auraManager.addSpecAura( Spec.BREWMASTER, new ClassBuff(124275, 0) );//Light Stagger
+      auraManager.addSpecAura( Spec.BREWMASTER, new ClassBuff(124274, 0) );//Moderate Stagger
+      auraManager.addSpecAura( Spec.BREWMASTER, new ClassBuff(124273, 0) );//Heavy Stagger
+      //auraManager.addSpecAura( Spec.BREWMASTER, new ClassBuff(387184) );//Weapons of Order
+      auraManager.addSpecAura( Spec.BREWMASTER, new ClassBuff(115176, 1) );//Zen Meditation
+      auraManager.addSpecAura( Spec.BREWMASTER, new ClassBuff(132578, 2) );//Invoke Niuzao, the Black Ox
+
+      auraManager.addSpecAura( Spec.WINDWALKER, new ClassBuff(125174, 2) );//Touch of Karma
+      auraManager.addSpecAura( Spec.WINDWALKER, new ClassBuff(137639, 0) );//Storm, Earth & Fire
+      auraManager.addSpecAura( Spec.WINDWALKER, new ClassBuff(152173, 0) );//Serenity
+      //Track Xuen pet
    }
-   
-   //karma
-   //fort brew?
-   //riposte?
-   //blur?
-   //freedom?
-   //Dispersion?
-   //zen meditation?
+
+   private void populateEvokerAuras() {
+      auraManager.addClassAura( SpecClass.EVOKER, new DefensiveBuff(363916) );//Obsidian Scales
+      auraManager.addClassAura( SpecClass.EVOKER, new DefensiveBuff(374348) );//Renewing Blaze
+
+      auraManager.addSpecAura( Spec.DEVASTATION, new ClassBuff(375087) );//Dragonrage
+
+      //Global
+      //Zephyr - 374227
+   }
    
    //global stoneskin?
 }

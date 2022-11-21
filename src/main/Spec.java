@@ -57,7 +57,9 @@ public enum Spec {
    DEMONOLOGY(SpecClass.WARLOCK),
    
    WINDWALKER(SpecClass.MONK),
-   BREWMASTER(SpecClass.MONK)
+   BREWMASTER(SpecClass.MONK),
+   
+   DEVASTATION(SpecClass.EVOKER)
    ;
    
    private SpecClass specClass;
